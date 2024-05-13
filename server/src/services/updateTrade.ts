@@ -1,13 +1,13 @@
 import { prisma } from "../config/prisma.config";
 import { getTradeByIdService } from "./getTradeById";
 
-export const deleteTradeById = async (id: string) => {
+export const updateTradeByIdService = async (id: string, data: any) => {
   const tradeExist = await getTradeByIdService(id);
   if (!tradeExist) {
     return null;
   }
-  const deletedTrade = await prisma.trade.delete({
+  return await prisma.trade.update({
     where: { id: Number(id) },
+    data: { ...data },
   });
-  return deletedTrade;
 };
