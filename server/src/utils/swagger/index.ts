@@ -1,5 +1,5 @@
 import swaggerJsDoc from "swagger-jsdoc";
-
+// require('../../routers/*.ts')
 const options = {
     definition: {
         openapi: '3.0.0',
@@ -10,7 +10,7 @@ const options = {
         },
     },
     apis: [
-        './src/routers/*.ts',
+        '../../routers/*.ts',
     ],
 };
 
