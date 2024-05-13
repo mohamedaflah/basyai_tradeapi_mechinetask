@@ -1,25 +1,39 @@
 import { prisma } from "../config/prisma.config";
 
 export const getAllTradeService = async (query: any) => {
-    let whereClause:any = {};
+  let whereClause: any = {};
 
-    
+  if (query) {
     if (query) {
-      // Iterate over each key in the query object
       Object.keys(query).forEach((key) => {
-        // Check if the key is valid for filtering trades
-        if (['type', 'user_id','symbol','shares','price','timestamp'].includes(key)) {
-          // Add condition to the where clause
-          whereClause[key] = query[key];
+        if (["id", "price", "shares", "user_id"].includes(key)) {
+          query[key] = Number(query[key]);
         }
       });
     }
+    Object.keys(query).forEach((key) => {
+      if (
+        [
+          "type",
+          "user_id",
+          "symbol",
+          "shares",
+          "price",
+          "timestamp",
+          "id",
+        ].includes(key)
+      ) {
   
-    // Fetch trades based on the constructed where clause
-    return await prisma.trade.findMany({
-      where: whereClause,
-      orderBy: {
-        id: 'asc'
+        whereClause[key] = query[key];
       }
     });
+  }
+
+
+  return await prisma.trade.findMany({
+    where: whereClause,
+    orderBy: {
+      id: "asc",
+    },
+  });
 };

@@ -7,9 +7,10 @@ export const updateTradeController = async (
   next: NextFunction
 ) => {
   try {
-    const { id } = req.params;
-    const { body } = req;
-    const trade = await updateTradeByIdService(String(id), body);
+    if (!req.body) {
+      throw new Error(`Updation is not possible`);
+    }
+    const trade = await updateTradeByIdService(Number(req.params.id), req.body);
     if (!trade) {
       return res.status(405).send(`Updation is not possible`);
     }

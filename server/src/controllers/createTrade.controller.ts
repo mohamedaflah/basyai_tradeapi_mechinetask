@@ -8,12 +8,7 @@ export const createTradeController = async (
   next: NextFunction
 ) => {
   try {
-    const { values, error } = await createTradeSchema.validateAsync(req.body);
-    if (error) {
-      next(error);
-    }
-    console.log("🚀 ~ values:", values)
-    const trade = await createTradeService(values);
+    const trade = await createTradeService(req.body);
     res.status(201).json({ status: true, trade, message: "Successful" });
   } catch (error) {
     next(error);

@@ -8,6 +8,7 @@ export const deleteTradeController = async (
 ) => {
   try {
     const trade = await deleteTradeById(req.params.id);
+    console.log("🚀 ~ trade:", trade)
     if (!trade) {
       return res
         .status(405)
