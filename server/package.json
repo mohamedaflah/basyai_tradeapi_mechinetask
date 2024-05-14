@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cross-env PORT=5002 jest ",
     "start": "dist src/index.js",
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "build":"tsc"
   },
   "keywords": [],
   "author": "",

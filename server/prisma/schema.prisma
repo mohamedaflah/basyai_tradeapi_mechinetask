@@ -14,13 +14,13 @@ datasource db {
 }
 
 model trade {
-  id         Int      @id @default(autoincrement())
-  type       String
-  user_id    Int
-  symbol     String
-  shares     Int
-  price      Float    
-  timestamp  DateTime 
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id        Int      @id @default(autoincrement())
+  type      String
+  user_id   Int
+  symbol    String
+  shares    Int
+  price     Float
+  timestamp DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

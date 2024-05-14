@@ -9,7 +9,21 @@ import { deleteTradeController } from "../controllers/deleteTrade.controller";
 import { updateTradeController } from "../controllers/updateTrade.controller";
 
 const tradeRoute = Router();
-
+/**
+ * @swagger
+ * /api/trade:
+ *   post:
+ *     description: Create a new Trade
+ *     parameters:
+ *       - name: type
+ *         in:   path
+ *         description: type of the trade
+ *         required: true
+ *         type: String
+ *     responses:
+ *       201:
+ *         description: Success
+ */
 tradeRoute
   .route(`/`)
   .post(validateCreateTradeData(createTradeSchema), createTradeController)
